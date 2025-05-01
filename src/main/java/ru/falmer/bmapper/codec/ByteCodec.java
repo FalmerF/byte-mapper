@@ -1,24 +1,24 @@
-package ru.falmer.bpersistence.codec;
+package ru.falmer.bmapper.codec;
 
-import ru.falmer.bpersistence.ByteMapper;
-import ru.falmer.bpersistence.ByteMapperContext;
+import ru.falmer.bmapper.ByteMapper;
+import ru.falmer.bmapper.ByteMapperContext;
 
 import java.nio.ByteBuffer;
 
-public class ObjectCodec implements ValueCodec {
+public class ByteCodec implements ValueCodec {
 
     @Override
     public Class<?>[] getProvidedValueClass() {
-        return new Class[]{Object.class};
+        return new Class[]{Byte.class, byte.class};
     }
 
     @Override
     public Object read(ByteBuffer buffer, Class<?> clazz, ByteMapperContext context, ByteMapper mapper) {
-        return mapper.read(buffer);
+        return buffer.get();
     }
 
     @Override
     public void write(ByteBuffer buffer, ByteMapperContext context, ByteMapper mapper, Object value) {
-        mapper.write(buffer, value);
+        buffer.put((Byte) value);
     }
 }

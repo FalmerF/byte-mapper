@@ -1,4 +1,4 @@
-package ru.falmer.bpersistence.util;
+package ru.falmer.bmapper.util;
 
 import java.nio.ByteBuffer;
 

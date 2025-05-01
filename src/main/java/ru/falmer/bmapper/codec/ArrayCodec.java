@@ -1,9 +1,9 @@
-package ru.falmer.bpersistence.codec;
+package ru.falmer.bmapper.codec;
 
 import lombok.RequiredArgsConstructor;
-import ru.falmer.bpersistence.ByteMapper;
-import ru.falmer.bpersistence.ByteMapperContext;
-import ru.falmer.bpersistence.util.ValueCodecUtil;
+import ru.falmer.bmapper.ByteMapper;
+import ru.falmer.bmapper.ByteMapperContext;
+import ru.falmer.bmapper.util.ValueCodecUtil;
 
 import java.lang.reflect.Array;
 import java.nio.ByteBuffer;

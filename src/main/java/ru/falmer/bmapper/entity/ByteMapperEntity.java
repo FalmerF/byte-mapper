@@ -1,4 +1,4 @@
-package ru.falmer.bpersistence.entity;
+package ru.falmer.bmapper.entity;
 
 import lombok.Getter;
 

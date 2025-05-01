@@ -1,8 +1,8 @@
-package ru.falmer.bpersistence.entity;
+package ru.falmer.bmapper.entity;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import ru.falmer.bpersistence.codec.ValueCodec;
+import ru.falmer.bmapper.codec.ValueCodec;
 
 import java.util.function.BiConsumer;
 import java.util.function.Function;

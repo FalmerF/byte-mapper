@@ -1,12 +1,12 @@
-package ru.falmer.bpersistence;
+package ru.falmer.bmapper;
 
 import lombok.RequiredArgsConstructor;
-import ru.falmer.bpersistence.annotation.ByteEntity;
-import ru.falmer.bpersistence.annotation.ByteProperty;
-import ru.falmer.bpersistence.codec.ValueCodec;
-import ru.falmer.bpersistence.entity.ByteMapperEntity;
-import ru.falmer.bpersistence.entity.ByteMapperProperty;
-import ru.falmer.bpersistence.exception.ByteMapperAnalyzeException;
+import ru.falmer.bmapper.annotation.ByteEntity;
+import ru.falmer.bmapper.annotation.ByteProperty;
+import ru.falmer.bmapper.codec.ValueCodec;
+import ru.falmer.bmapper.entity.ByteMapperEntity;
+import ru.falmer.bmapper.entity.ByteMapperProperty;
+import ru.falmer.bmapper.exception.ByteMapperAnalyzeException;
 
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;

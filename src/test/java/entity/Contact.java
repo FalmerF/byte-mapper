@@ -1,8 +1,8 @@
 package entity;
 
 import lombok.*;
-import ru.falmer.bpersistence.annotation.ByteEntity;
-import ru.falmer.bpersistence.annotation.ByteProperty;
+import ru.falmer.bmapper.annotation.ByteEntity;
+import ru.falmer.bmapper.annotation.ByteProperty;
 
 @ToString
 @ByteEntity(3)

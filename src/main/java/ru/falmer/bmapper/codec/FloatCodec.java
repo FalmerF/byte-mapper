@@ -1,7 +1,7 @@
-package ru.falmer.bpersistence.codec;
+package ru.falmer.bmapper.codec;
 
-import ru.falmer.bpersistence.ByteMapper;
-import ru.falmer.bpersistence.ByteMapperContext;
+import ru.falmer.bmapper.ByteMapper;
+import ru.falmer.bmapper.ByteMapperContext;
 
 import java.nio.ByteBuffer;
 

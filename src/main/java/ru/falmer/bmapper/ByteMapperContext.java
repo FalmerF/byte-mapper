@@ -1,10 +1,10 @@
-package ru.falmer.bpersistence;
+package ru.falmer.bmapper;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import lombok.Getter;
-import ru.falmer.bpersistence.codec.*;
-import ru.falmer.bpersistence.entity.ByteMapperEntity;
-import ru.falmer.bpersistence.exception.ByteMapperAnalyzeException;
+import ru.falmer.bmapper.codec.*;
+import ru.falmer.bmapper.entity.ByteMapperEntity;
+import ru.falmer.bmapper.exception.ByteMapperAnalyzeException;
 
 import java.util.HashMap;
 import java.util.Map;
