@@ -7,10 +7,12 @@ import ru.falmer.bpersistence.entity.ByteMapperEntity;
 import ru.falmer.bpersistence.entity.ByteMapperProperty;
 import ru.falmer.bpersistence.exception.ByteMapperAnalyzeException;
 
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
+import java.lang.invoke.MethodType;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiConsumer;
@@ -88,7 +90,9 @@ public class ByteMapperAnalyzer {
 
         Object defaultValue = getterFunction.apply(instance);
 
-        return new ByteMapperProperty(fieldClazz, propertyId, defaultValue, getterFunction, setterFunction);
+        ValueCodec codec = context.getCodecForClass(fieldClazz);
+
+        return new ByteMapperProperty(fieldClazz, propertyId, codec, defaultValue, getterFunction, setterFunction);
     }
 
     private String formatFieldName(String name) {
@@ -103,24 +107,23 @@ public class ByteMapperAnalyzer {
         }
     }
 
-    private Function<Object, Object> getFieldMethodGetter(Class<?> entityClazz, String name, Class<?> fieldClazz) throws NoSuchMethodException {
+    private Function<Object, Object> getFieldMethodGetter(Class<?> entityClazz, String name, Class<?> fieldClazz) throws NoSuchMethodException, IllegalAccessException {
         String getterName = getFieldGetterName(name, fieldClazz);
-        Method method = entityClazz.getDeclaredMethod(getterName);
+
+        MethodHandles.Lookup lookup = MethodHandles.lookup();
+        MethodType methodType = MethodType.methodType(fieldClazz);
+        MethodHandle method = lookup.findVirtual(entityClazz, getterName, methodType);
 
         return object -> {
             try {
                 return method.invoke(object);
-            } catch (IllegalAccessException | InvocationTargetException e) {
+            } catch (Throwable e) {
                 throw new RuntimeException(e);
             }
         };
     }
 
     private Function<Object, Object> getFieldSimpleGetter(Field field) {
-        if (!field.isAccessible()) {
-            throw new ByteMapperAnalyzeException("Field " + field.getName() + " is not accessible");
-        }
-
         return object -> {
             try {
                 return field.get(object);
@@ -146,24 +149,23 @@ public class ByteMapperAnalyzer {
         }
     }
 
-    private BiConsumer<Object, Object> getFieldMethodSetter(Class<?> entityClazz, String name, Class<?> fieldClazz) throws NoSuchMethodException {
+    private BiConsumer<Object, Object> getFieldMethodSetter(Class<?> entityClazz, String name, Class<?> fieldClazz) throws NoSuchMethodException, IllegalAccessException {
         String setterName = getFieldSetterName(name, fieldClazz);
-        Method method = entityClazz.getDeclaredMethod(setterName, fieldClazz);
+
+        MethodHandles.Lookup lookup = MethodHandles.lookup();
+        MethodType methodType = MethodType.methodType(void.class, fieldClazz);
+        MethodHandle method = lookup.findVirtual(entityClazz, setterName, methodType);
 
         return (object, value) -> {
             try {
                 method.invoke(object, value);
-            } catch (IllegalAccessException | InvocationTargetException e) {
+            } catch (Throwable e) {
                 throw new RuntimeException(e);
             }
         };
     }
 
     private BiConsumer<Object, Object> getFieldSimpleSetter(Field field) {
-        if (!field.isAccessible()) {
-            throw new ByteMapperAnalyzeException("Field " + field.getName() + " is not accessible");
-        }
-
         return (object, value) -> {
             try {
                 field.set(object, value);

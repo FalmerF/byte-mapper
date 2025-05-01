@@ -34,7 +34,7 @@ public class ByteMapper {
         for (int i = 0; i < parameterCount; i++) {
             int parameterId = buffer.getInt();
             ByteMapperProperty parameter = entity.getProperty(parameterId);
-            ValueCodec codec = context.getCodecForClass(parameter.getClazz());
+            ValueCodec codec = parameter.getCodec();
 
             Object value = codec.read(buffer, parameter.getClazz(), context, this);
             parameter.setValue(instance, value);
@@ -61,8 +61,8 @@ public class ByteMapper {
             }
 
             buffer.putInt(parameter.getId());
-            ValueCodec type = context.getCodecForClass(parameter.getClazz());
-            type.write(buffer, context, this, value);
+            ValueCodec codec = parameter.getCodec();
+            codec.write(buffer, context, this, value);
 
             count++;
         }

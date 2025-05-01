@@ -1,5 +1,6 @@
 package ru.falmer.bpersistence;
 
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import lombok.Getter;
 import ru.falmer.bpersistence.entity.ByteMapperEntity;
 import ru.falmer.bpersistence.exception.ByteMapperAnalyzeException;
@@ -11,7 +12,7 @@ public class ByteMapperContext {
 
     private final Map<Class<?>, ValueCodec> typeMap = new HashMap<>();
     private final Map<Class<?>, ByteMapperEntity> entityMap = new HashMap<>();
-    private final Map<Integer, ByteMapperEntity> entityIdMap = new HashMap<>();
+    private final Map<Integer, ByteMapperEntity> entityIdMap = new Int2ObjectOpenHashMap<>();
 
     private final ByteMapperAnalyzer analyzer;
 
@@ -36,7 +37,7 @@ public class ByteMapperContext {
         );
     }
 
-    public void registerValueCodec(ValueCodec... codecs) {
+    private void registerValueCodec(ValueCodec... codecs) {
         for (ValueCodec valueCodec : codecs) {
             for (Class<?> valueClass : valueCodec.getProvidedValueClass()) {
                 typeMap.put(valueClass, valueCodec);

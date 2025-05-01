@@ -2,6 +2,7 @@ package ru.falmer.bpersistence.entity;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import ru.falmer.bpersistence.ValueCodec;
 
 import java.util.function.BiConsumer;
 import java.util.function.Function;
@@ -13,6 +14,8 @@ public class ByteMapperProperty {
     private final Class<?> clazz;
     @Getter
     private final int id;
+    @Getter
+    private final ValueCodec codec;
     @Getter
     private final Object defaultValue;
 
