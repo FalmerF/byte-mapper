@@ -38,7 +38,7 @@ public class ByteMapperAnalyzer {
 
         Map<Integer, ByteMapperProperty> properties = analyzeProperties(clazz, instance);
 
-        return new ByteMapperEntity(clazz, entityId, properties, constructor);
+        return new ByteMapperEntity(entityId, properties, constructor);
     }
 
     private int getEntityId(Class<?> clazz) {

@@ -1,5 +1,6 @@
 package ru.falmer.bpersistence;
 
+import lombok.Getter;
 import ru.falmer.bpersistence.entity.ByteMapperEntity;
 import ru.falmer.bpersistence.exception.ByteMapperAnalyzeException;
 
@@ -14,8 +15,12 @@ public class ByteMapperContext {
 
     private final ByteMapperAnalyzer analyzer;
 
+    @Getter
+    private final ByteMapper byteMapper;
+
     public ByteMapperContext() {
         this.analyzer = new ByteMapperAnalyzer(this);
+        this.byteMapper = new ByteMapper(this);
 
         registerValueCodec(
                 new ValueCodec.ByteCodec(),
@@ -77,14 +82,4 @@ public class ByteMapperContext {
 
         throw new ByteMapperAnalyzeException("Cannot find type for class " + clazz);
     }
-
-    public ByteMapperEntity getEntityForClass(Class<?> clazz) {
-        ByteMapperEntity entity = entityMap.get(clazz);
-        if (entity == null) {
-            throw new ByteMapperAnalyzeException("Cannot find entity for class " + clazz);
-        }
-
-        return entity;
-    }
-
 }

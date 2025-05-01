@@ -8,13 +8,11 @@ import java.nio.ByteBuffer;
 
 class ByteMapperTest {
 
-    private ByteMapperContext container;
-    private ByteMapper mapper;
+    private final ByteMapper mapper;
 
     public ByteMapperTest() {
-        container = new ByteMapperContext();
-        container.registerAndGetEntity(User.class);
-        mapper = new ByteMapper(container);
+        ByteMapperContext context = new ByteMapperContext();
+        mapper = context.getByteMapper();
     }
 
     @Test
