@@ -33,7 +33,7 @@ public class ByteMapperContext {
         );
     }
 
-    private void registerValueCodec(ValueCodec... codecs) {
+    public void registerValueCodec(ValueCodec... codecs) {
         for (ValueCodec valueCodec : codecs) {
             for (Class<?> valueClass : valueCodec.getProvidedValueClass()) {
                 typeMap.put(valueClass, valueCodec);
