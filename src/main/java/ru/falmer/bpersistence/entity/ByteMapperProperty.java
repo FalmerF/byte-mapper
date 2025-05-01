@@ -2,7 +2,7 @@ package ru.falmer.bpersistence.entity;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import ru.falmer.bpersistence.ValueCodec;
+import ru.falmer.bpersistence.codec.ValueCodec;
 
 import java.util.function.BiConsumer;
 import java.util.function.Function;

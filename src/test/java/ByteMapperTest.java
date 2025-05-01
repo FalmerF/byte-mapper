@@ -1,4 +1,6 @@
 import entity.Address;
+import entity.Contact;
+import entity.Document;
 import entity.User;
 import org.junit.jupiter.api.Test;
 import ru.falmer.bpersistence.ByteMapper;
@@ -7,8 +9,7 @@ import ru.falmer.bpersistence.ByteMapperContext;
 import java.nio.ByteBuffer;
 import java.time.Duration;
 import java.time.Instant;
-
-import static org.junit.jupiter.api.Assertions.fail;
+import java.util.UUID;
 
 class ByteMapperTest {
 
@@ -19,12 +20,17 @@ class ByteMapperTest {
         ByteMapperContext context = new ByteMapperContext();
         mapper = context.getByteMapper();
 
-        user = new User(1, new String[] {"Person", "Parent"}, new double[] {0.342, 0.458},
-                new Address[]{
-                        new Address("Test 1.1", "Test 1.2", "Test 1.3"),
-                        new Address("Test 2.1", "Test 2.2", "Test 2.3"),
-                        new Address("Test 3.1", "Test 3.2", "Test 3.3")
-                }, (short) 21);
+        user = new User(1,
+                "First Name", "Second Name", (short) 21,
+                new Address("Example Street", "Example City", "Example State"),
+                new Contact[]{
+                        new Contact("phone", "+1 234 567 89 10"),
+                        new Contact("email", "email@example.com")
+                },
+                new Document[]{
+                        new Document(UUID.randomUUID(), "test", "Hello, world!".getBytes())
+                }
+        );
     }
 
     @Test

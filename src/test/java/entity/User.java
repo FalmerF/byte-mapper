@@ -4,6 +4,8 @@ import lombok.*;
 import ru.falmer.bpersistence.annotation.ByteEntity;
 import ru.falmer.bpersistence.annotation.ByteProperty;
 
+import java.util.List;
+
 @Getter
 @Setter
 @ToString
@@ -13,17 +15,23 @@ import ru.falmer.bpersistence.annotation.ByteProperty;
 public class User {
 
     @ByteProperty(1)
-    private Integer id;
-
-    @ByteProperty(4)
-    private String[] name;
-
-    @ByteProperty(5)
-    private double[] value;
+    private int id;
 
     @ByteProperty(2)
-    private Address[] address;
+    private String firstName;
 
     @ByteProperty(3)
+    private String secondName;
+
+    @ByteProperty(4)
     private short age;
+
+    @ByteProperty(5)
+    private Address address;
+
+    @ByteProperty(6)
+    private Contact[] contacts;
+
+    @ByteProperty(7)
+    private Document[] documents;
 }

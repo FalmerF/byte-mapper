@@ -3,6 +3,7 @@ package ru.falmer.bpersistence;
 import lombok.RequiredArgsConstructor;
 import ru.falmer.bpersistence.annotation.ByteEntity;
 import ru.falmer.bpersistence.annotation.ByteProperty;
+import ru.falmer.bpersistence.codec.ValueCodec;
 import ru.falmer.bpersistence.entity.ByteMapperEntity;
 import ru.falmer.bpersistence.entity.ByteMapperProperty;
 import ru.falmer.bpersistence.exception.ByteMapperAnalyzeException;
@@ -150,7 +151,7 @@ public class ByteMapperAnalyzer {
     }
 
     private BiConsumer<Object, Object> getFieldMethodSetter(Class<?> entityClazz, String name, Class<?> fieldClazz) throws NoSuchMethodException, IllegalAccessException {
-        String setterName = getFieldSetterName(name, fieldClazz);
+        String setterName = getFieldSetterName(name);
 
         MethodHandles.Lookup lookup = MethodHandles.lookup();
         MethodType methodType = MethodType.methodType(void.class, fieldClazz);
@@ -175,7 +176,7 @@ public class ByteMapperAnalyzer {
         };
     }
 
-    private String getFieldSetterName(String name, Class<?> type) {
+    private String getFieldSetterName(String name) {
         return "set" + name.substring(0, 1).toUpperCase() + name.substring(1);
     }
 }

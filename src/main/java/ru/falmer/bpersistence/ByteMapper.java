@@ -1,17 +1,12 @@
 package ru.falmer.bpersistence;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import ru.falmer.bpersistence.codec.ValueCodec;
 import ru.falmer.bpersistence.entity.ByteMapperEntity;
 import ru.falmer.bpersistence.entity.ByteMapperProperty;
 
 import java.nio.ByteBuffer;
-import java.util.AbstractMap;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @AllArgsConstructor
 public class ByteMapper {

@@ -2,6 +2,7 @@ package ru.falmer.bpersistence;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import lombok.Getter;
+import ru.falmer.bpersistence.codec.*;
 import ru.falmer.bpersistence.entity.ByteMapperEntity;
 import ru.falmer.bpersistence.exception.ByteMapperAnalyzeException;
 
@@ -24,16 +25,11 @@ public class ByteMapperContext {
         this.byteMapper = new ByteMapper(this);
 
         registerValueCodec(
-                new ValueCodec.ByteCodec(),
-                new ValueCodec.ShortCodec(),
-                new ValueCodec.VarIntCodec(),
-                new ValueCodec.VarLongCodec(),
-                new ValueCodec.FloatCodec(),
-                new ValueCodec.DoubleCodec(),
-                new ValueCodec.StringCodec(),
-                new ValueCodec.CharCodec(),
-                new ValueCodec.ArrayCodec(),
-                new ValueCodec.ObjectCodec()
+                new ByteCodec(), new ShortCodec(),
+                new VarIntCodec(), new VarLongCodec(),
+                new FloatCodec(), new DoubleCodec(),
+                new StringCodec(), new CharCodec(),
+                new UUIDCodec(), new ObjectCodec()
         );
     }
 
@@ -50,6 +46,11 @@ public class ByteMapperContext {
 
         if (entity == null) {
             entity = analyzer.analyzeEntity(clazz);
+
+            if (entityIdMap.containsKey(entity.getId())) {
+                throw new ByteMapperAnalyzeException("Entity with id " + entity.getId() + " already exists");
+            }
+
             entityMap.put(clazz, entity);
             entityIdMap.put(entity.getId(), entity);
         }
@@ -68,7 +69,8 @@ public class ByteMapperContext {
 
     public ValueCodec getCodecForClass(Class<?> clazz) {
         if (clazz.isArray()) {
-            return typeMap.get(Object[].class);
+            Class<?> componentType = clazz.getComponentType();
+            return new ArrayCodec(getCodecForClass(componentType));
         }
 
         ValueCodec type = typeMap.get(clazz);
