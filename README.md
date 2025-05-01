@@ -2,7 +2,9 @@
 
 byte-mapper provides a convenient serialiser and deserialiser of Java objects into a compact byte array.
 
-## Useage
+---
+
+## Usage
 
 Example data class:
 
@@ -46,6 +48,8 @@ buffer.flip();
 user = mapper.read(exampleBuffer);
 ```
 
+---
+
 ## Processing Custom Values
 
 To add your own value processing, create a class inherited from `ru.falmer.bmapper.codec.ValueCodec`:
@@ -78,3 +82,15 @@ context.registerValueCodec(new FloatCodec());
 ```
 
 > **Important!** Register `ValueCodec` before you start working with the context!
+
+---
+
+## Annotations
+
+### ByteEntity
+
+All classes marked with the `@ByteEntity` annotation can be serialised and deserialised using `ByteMapper`. Each entity must have a unique numeric identifier within the same context.
+
+### ByteParameter
+
+Each field marked with the `@ByteParameter` annotation will be serialised and deserialised. Fields NOT marked with this annotation will be ignored. Each field must have a unique numeric identifier within the same entity.
