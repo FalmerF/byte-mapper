@@ -1,8 +1,8 @@
-package ru.falmer.bmapper.codec;
+package ru.ilug.bmapper.codec;
 
-import ru.falmer.bmapper.ByteMapper;
-import ru.falmer.bmapper.ByteMapperContext;
-import ru.falmer.bmapper.util.ValueCodecUtil;
+import ru.ilug.bmapper.ByteMapper;
+import ru.ilug.bmapper.ByteMapperContext;
+import ru.ilug.bmapper.util.ValueCodecUtil;
 
 import java.nio.ByteBuffer;
 

@@ -52,7 +52,7 @@ user = mapper.read(exampleBuffer);
 
 ## Processing Custom Values
 
-To add your own value processing, create a class inherited from `ru.falmer.bmapper.codec.ValueCodec`:
+To add your own value processing, create a class inherited from `codec.ru.ilug.bmapper.ValueCodec`:
 
 ```java
 public class FloatCodec implements ValueCodec {

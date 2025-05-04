@@ -1,9 +1,9 @@
-package ru.falmer.bmapper;
+package ru.ilug.bmapper;
 
 import lombok.AllArgsConstructor;
-import ru.falmer.bmapper.codec.ValueCodec;
-import ru.falmer.bmapper.entity.ByteMapperEntity;
-import ru.falmer.bmapper.entity.ByteMapperProperty;
+import ru.ilug.bmapper.codec.ValueCodec;
+import ru.ilug.bmapper.entity.ByteMapperEntity;
+import ru.ilug.bmapper.entity.ByteMapperProperty;
 
 import java.nio.ByteBuffer;
 import java.util.Objects;

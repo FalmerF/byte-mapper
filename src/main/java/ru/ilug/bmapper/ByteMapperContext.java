@@ -1,10 +1,10 @@
-package ru.falmer.bmapper;
+package ru.ilug.bmapper;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import lombok.Getter;
-import ru.falmer.bmapper.codec.*;
-import ru.falmer.bmapper.entity.ByteMapperEntity;
-import ru.falmer.bmapper.exception.ByteMapperAnalyzeException;
+import ru.ilug.bmapper.codec.*;
+import ru.ilug.bmapper.entity.ByteMapperEntity;
+import ru.ilug.bmapper.exception.ByteMapperAnalyzeException;
 
 import java.util.HashMap;
 import java.util.Map;

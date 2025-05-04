@@ -1,12 +1,12 @@
-package ru.falmer.bmapper;
+package ru.ilug.bmapper;
 
 import lombok.RequiredArgsConstructor;
-import ru.falmer.bmapper.annotation.ByteEntity;
-import ru.falmer.bmapper.annotation.ByteProperty;
-import ru.falmer.bmapper.codec.ValueCodec;
-import ru.falmer.bmapper.entity.ByteMapperEntity;
-import ru.falmer.bmapper.entity.ByteMapperProperty;
-import ru.falmer.bmapper.exception.ByteMapperAnalyzeException;
+import ru.ilug.bmapper.annotation.ByteEntity;
+import ru.ilug.bmapper.annotation.ByteProperty;
+import ru.ilug.bmapper.codec.ValueCodec;
+import ru.ilug.bmapper.entity.ByteMapperEntity;
+import ru.ilug.bmapper.entity.ByteMapperProperty;
+import ru.ilug.bmapper.exception.ByteMapperAnalyzeException;
 
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
