@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'ru.ilug'
-version = '1.0.0'
+version = '1.0.1'
 
 repositories {
     mavenCentral()
@@ -95,11 +95,9 @@ jreleaser {
     }
     release {
         github {
-            skipRelease = true
-            skipTag = true
             sign = true
-            branch = "main"
-            branchPush = "main"
+            branch = "master"
+            branchPush = "master"
             overwrite = true
         }
     }
