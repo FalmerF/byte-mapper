@@ -1,13 +1,13 @@
 # byte-mapper
 
-byte-mapper provides a convenient serialiser and deserialiser of Java objects into a compact byte array.
+## How to use
 
----
+Add dependency to your project:
+```groovy
+implementation 'ru.ilug:byte-mapper:1.0.0'
+```
 
-## Usage
-
-Example data class:
-
+Sample data class for ьфззштп:
 ```java
 @ByteEntity(1)
 public class User {
@@ -32,7 +32,6 @@ public class User {
 ```
 
 Mapping object:
-
 ```java
 // Create Byte Mapper Context
 ByteMapperContext context = new ByteMapperContext();
@@ -47,8 +46,6 @@ buffer.flip();
 // Read User object from ByteBuffer
 user = mapper.read(exampleBuffer);
 ```
-
----
 
 ## Processing Custom Values
 
@@ -82,8 +79,6 @@ context.registerValueCodec(new FloatCodec());
 ```
 
 > **Important!** Register `ValueCodec` before you start working with the context!
-
----
 
 ## Annotations
 
