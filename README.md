@@ -1,13 +1,15 @@
-# byte-mapper
+# Byte Mapper
+
+Provides a convenient serializer and deserializer of Java objects into a compact byte array.
 
 ## How to use
 
 Add dependency to your project:
 ```groovy
-implementation 'ru.ilug:byte-mapper:1.0.0'
+implementation 'ru.ilug:byte-mapper:1.0.1'
 ```
 
-Sample data class for ьфззштп:
+Sample data class for mapping:
 ```java
 @ByteEntity(1)
 public class User {
