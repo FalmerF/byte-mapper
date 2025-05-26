@@ -86,8 +86,8 @@ context.registerValueCodec(new FloatCodec());
 
 ### ByteEntity
 
-All classes marked with the `@ByteEntity` annotation can be serialised and deserialised using `ByteMapper`. Each entity must have a unique numeric identifier within the same context.
+All classes marked with the `@ByteEntity` annotation can be serialized and deserialized using `ByteMapper`. Each entity must have a unique numeric identifier within the same context.
 
 ### ByteParameter
 
-Each field marked with the `@ByteParameter` annotation will be serialised and deserialised. Fields NOT marked with this annotation will be ignored. Each field must have a unique numeric identifier within the same entity.
+Each field marked with the `@ByteParameter` annotation will be serialized and deserialized. Fields NOT marked with this annotation will be ignored. Each field must have a unique numeric identifier within the same entity.
