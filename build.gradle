@@ -4,7 +4,7 @@ plugins {
     id 'org.jreleaser' version '1.18.0'
 }
 
-group = 'ru.ilug.bmapper'
+group = 'ru.ilug'
 version = '1.0.0'
 
 repositories {
@@ -27,14 +27,91 @@ test {
     useJUnitPlatform()
 }
 
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+description = 'Simple byte mapper for Java objects'
+
 publishing {
     publications {
-        bmapper(MavenPublication) {
+        release(MavenPublication) {
+            from(components["java"])
+
             groupId = project.group
             artifactId = project.name
-            version = project.version
 
-            from components.java
+            pom {
+                name.set(project.name)
+                description.set(project.description)
+                url.set("https://github.com/FalmerF/byte-mapper")
+                issueManagement {
+                    url.set("https://github.com/FalmerF/byte-mapper/issues")
+                }
+
+                scm {
+                    url.set("https://github.com/FalmerF/byte-mapper")
+                    connection.set("scm:git://github.com/FalmerF/byte-mapper.git")
+                    developerConnection.set("scm:git://github.com/FalmerF/byte-mapper.git")
+                }
+
+                licenses {
+                    license {
+                        name.set("GNU GENERAL PUBLIC LICENSE Version 3")
+                        url.set("https://www.gnu.org/licenses/gpl-3.0.txt")
+                        distribution.set("repo")
+                    }
+                }
+
+                developers {
+                    developer {
+                        id.set("FalmerF")
+                        name.set("Ivan Lugovoy")
+                        email.set("foulorown@gmail.com")
+                        url.set("https://ilug.ru")
+                    }
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            setUrl(layout.buildDirectory.dir("staging-deploy"))
+        }
+    }
+}
+
+jreleaser {
+    project {
+        inceptionYear = "2025"
+        author("@FalmerF")
+    }
+    signing {
+        active = 'ALWAYS'
+        armored = true
+        verify = true
+        mode = 'FILE'
+    }
+    release {
+        github {
+            skipRelease = true
+            skipTag = true
+            sign = true
+            branch = "main"
+            branchPush = "main"
+            overwrite = true
+        }
+    }
+    deploy {
+        maven {
+            mavenCentral.create("sonatype") {
+                active = 'ALWAYS'
+                url = "https://central.sonatype.com/api/v1/publisher"
+                stagingRepository(layout.buildDirectory.dir("staging-deploy").get().toString())
+                setAuthorization("Basic")
+                retryDelay = 60
+            }
         }
     }
 }
